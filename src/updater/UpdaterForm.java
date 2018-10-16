@@ -264,10 +264,17 @@ public class UpdaterForm extends javax.swing.JFrame {
             connection = server.openConnection();
             connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36");
             connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+            //connection.setRequestProperty("Content-Type",  "application/octet-stream");
             connection.setRequestProperty("Accept-Language", "UTF-8");
-            connection.setConnectTimeout(100000);
-            connection.setReadTimeout(100000);
-            connection.setDoOutput(true);
+            //connection.setRequestProperty("Connection", "keep-alive, Upgrade");
+            connection.setRequestProperty("Pragma", "no-cache");
+            connection.setRequestProperty("Cache-Control", "no-cache");
+            connection.setUseCaches(false);
+            //connection.setConnectTimeout(100000);
+            //connection.setReadTimeout(100000);
+            connection.setDoOutput(true);            
+            //connection.setDoInput(true);
+            
             is = connection.getInputStream();
             if (UploadTimer.this.showProgress) {
               progressBar.setMaximum(is.available());
